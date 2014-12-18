@@ -227,7 +227,7 @@ textarea {
 @media print,
        (-o-min-device-pixel-ratio: 5/4),
        (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
+       (min-resolution: 120dppx) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -301,4 +301,71 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+
+header {
+    height: 100px;
+    line-height: 100px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+.preview {
+    position: relative;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+}
+
+#actions {
+    position: relative;
+    width: 400px;
+    height: 90px;
+    line-height: 90px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#actions a {
+    display: inline-block;
+    height: 50px;
+    opacity: 0.8;
+    outline: none;
+}
+
+#gif-actions a {
+    opacity: 0.75;
+}
+
+#actions a:hover {
+    opacity: 1;
+}
+
+#actions img {
+    height: 100%;
+}
+
+#actions svg {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 3px;
+}
+
+#gif-actions {
+    display: none;
+}
+
+.action-left {
+    position: absolute;
+    left: 10px;
+}
+
+.action-right {
+    position: absolute;
+    right: 10px;
 }

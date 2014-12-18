@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,12 +11,32 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     </head>
     <body>
 
-        <!-- Add your site or application content here -->
-        <p>Make your gif.</p>
+        <header id="header-title">faceGIF</header>
+        <div id="placeholder" class="preview"></div>
+        <div id="actions">
+            <div id="stream-actions">
+                <a id="action-create" href="javascript:">
+                    <img src="img/camera.svg" alt="Take GIF" />
+                </a>
+            </div>
+            <div id="gif-actions">
+                <a id="action-reset" class="action-left" href="#" >
+                    <img src="img/back.svg" alt="Reset" />
+                </a>
+                <a id="action-download" href="#">
+                    <img src="img/download.svg" alt="Download" />
+                </a>
+            </div>
+        </div>
 
+        <script src="js/vendor/jquery-2.1.1.min.js"></script>
+        <script src="js/vendor/gifshot.min.js"></script>
+        <script src="js/vendor/gumhelper.js"></script>
+        <script src="js/vendor/progressbar.min.js"></script>
         <script src="js/main.js"></script>
 
         <script>

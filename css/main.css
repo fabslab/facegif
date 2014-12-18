@@ -314,7 +314,8 @@ header {
 .preview {
     position: relative;
     margin: 0 auto;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     height: 400px;
     overflow: hidden;
 }

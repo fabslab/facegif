@@ -20,8 +20,6 @@
     trailColor: "#ddd"
   });
 
-  actions.download.on('click', saveGIF);
-
   if (navigator.getMedia) {
     GumHelper.startVideoStreaming(startStream);
   }
@@ -70,6 +68,7 @@
     streamActions.fadeIn();
 
     actions.create.one('click', takeGIF);
+    $(window).one('keyup', takeGIF);
   }
 
   function takeGIF() {
@@ -98,10 +97,6 @@
       download: 'facegif.gif'
     });
     actions.reset.one('click', displayStream);
-  }
-
-  function saveGIF() {
-
   }
 
   function getCropDimensions(width, height, gifWidth, gifHeight) {

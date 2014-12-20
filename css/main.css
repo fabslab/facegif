@@ -335,8 +335,9 @@ header {
 #actions a {
     display: inline-block;
     height: 50px;
-    opacity: 0.8;
+    opacity: 0.75;
     outline: none;
+    transition: opacity .2s;
 }
 
 #gif-actions a {
@@ -372,5 +373,5 @@ header {
 
 .action-right {
     position: absolute;
-    right: 10px;
+    right: 15px;
 }

@@ -6,9 +6,10 @@
   var placeholder = $('#placeholder');
   var streamActions = $('#stream-actions');
   var gifActions = $('#gif-actions');
+  var createAction = $('#action-create');
+  var createIcon = createAction.find('img');
   var actions = {
-    create: $('#action-create'),
-    createIcon: $('#action-create img'),
+    create: createAction,
     reset: $('#action-reset'),
     download: $('#action-download'),
     share: $('#action-share')
@@ -50,8 +51,8 @@
     });
 
     gifOptions = {
-      interval: 0.1,
-      numFrames: 12,
+      interval: 0.15,
+      numFrames: 15,
       gifWidth: gifDimension,
       gifHeight: gifDimension,
       cameraStream: stream,
@@ -88,7 +89,7 @@
   }
 
   function takeGIF() {
-    actions.createIcon.addClass('rotating');
+    createIcon.addClass('rotating');
     progressBar.path.setAttribute('stroke', progressColor);
     $(progressBar.svg).show();
     gifshot.createGIF(gifOptions, displayGIF);
@@ -97,7 +98,7 @@
   function displayProgress(progress) {
     if (progress === 1) {
       progressBar.path.setAttribute('stroke', 'rgba(44,146,54,0.2)');
-      actions.createIcon.removeClass('rotating');
+      createIcon.removeClass('rotating');
     }
     progressBar.set(progress);
   }

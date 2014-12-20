@@ -49,12 +49,18 @@
     });
 
     gifOptions = {
-      interval: 0.15,
+      interval: 0.1,
+      numFrames: 12,
       gifWidth: gifDimension,
       gifHeight: gifDimension,
       cameraStream: stream,
       keepCameraOn: true,
-      progressCallback: displayProgress
+      progressCallback: displayProgress,
+      text: 'faceGIF.com',
+      fontFamily: 'Source Sans Pro',
+      fontColor: 'rgba(255,255,255,0.8)',
+      textXCoordinate: gifDimension - 50,
+      textYCoordinate: gifDimension - 5
     };
 
     $('#actions').show();

@@ -13,8 +13,9 @@
     share: $('#action-share')
   };
 
+  var progressColor = 'rgba(44,146,54,0.8)';
   var progressBar = new ProgressBar.Line('#actions', {
-    color: 'rgba(44,146,54,0.8)',
+    color: progressColor,
     strokeWidth: 3,
     duration: 1,
     trailColor: 'rgba(221,221,221,0.6)'
@@ -53,7 +54,7 @@
       gifHeight: gifDimension,
       cameraStream: stream,
       keepCameraOn: true,
-      progressCallback: progressBar.set.bind(progressBar)
+      progressCallback: displayProgress
     };
 
     $('#actions').show();
@@ -80,8 +81,16 @@
   }
 
   function takeGIF() {
+    progressBar.path.setAttribute('stroke', progressColor);
     $(progressBar.svg).show();
     gifshot.createGIF(gifOptions, displayGIF);
+  }
+
+  function displayProgress(progress) {
+    if (progress === 1) {
+      progressBar.path.setAttribute('stroke', 'rgba(44,146,54,0.2)');
+    }
+    progressBar.set(progress);
   }
 
   function displayGIF(obj) {

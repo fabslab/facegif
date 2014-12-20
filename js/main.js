@@ -68,7 +68,13 @@
     streamActions.fadeIn();
 
     actions.create.one('click', takeGIF);
-    $(window).one('keyup', takeGIF);
+    $(window).on('keyup', function onKeyup(event) {
+      // allow space to trigger taking GIF
+      if (event.keyCode == 32) {
+        $(window).off('keyup', onKeyup);
+        takeGIF();
+      }
+    });
   }
 
   function takeGIF() {

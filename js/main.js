@@ -14,10 +14,10 @@
   };
 
   var progressBar = new ProgressBar.Line('#actions', {
-    color: '#2C9236',
+    color: 'rgba(44,146,54,0.8)',
     strokeWidth: 3,
     duration: 1,
-    trailColor: "#ddd"
+    trailColor: 'rgba(221,221,221,0.6)'
   });
 
   if (navigator.getMedia) {
@@ -33,28 +33,30 @@
     streamElement = videoElement;
 
     var placeholderRect = placeholder[0].getBoundingClientRect();
-    var gifWidth = placeholderRect.width;
-    var gifHeight = placeholderRect.height;
+
+    // create a square camera view based on runtime width
+    var gifDimension = placeholderRect.width;
 
     // match the video to the largest dimension of the GIF
     // then position in center and parent element will crop video
-    var cropDimensions = getCropDimensions(videoWidth, videoHeight, gifWidth, gifHeight);
+    var cropDimensions = getCropDimensions(videoWidth, videoHeight, gifDimension, gifDimension);
     $(streamElement).css({
-      width: gifWidth + cropDimensions.width + 'px',
-      height: gifHeight + cropDimensions.height + 'px',
+      width: gifDimension + cropDimensions.width + 'px',
+      height: gifDimension + cropDimensions.height + 'px',
       'margin-left': -Math.floor(cropDimensions.width / 2) + 'px',
       'margin-top': -Math.floor(cropDimensions.height / 2) + 'px'
     });
 
     gifOptions = {
-      interval: 0.2,
-      gifWidth: gifWidth,
-      gifHeight: gifHeight,
+      interval: 0.15,
+      gifWidth: gifDimension,
+      gifHeight: gifDimension,
       cameraStream: stream,
       keepCameraOn: true,
       progressCallback: progressBar.set.bind(progressBar)
     };
 
+    $('#actions').show();
     displayStream();
   }
 

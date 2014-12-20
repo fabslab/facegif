@@ -304,8 +304,8 @@ textarea {
 }
 
 header {
-    height: 100px;
-    line-height: 100px;
+    height: 90px;
+    line-height: 90px;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 50px;
     text-align: center;
@@ -316,16 +316,17 @@ header {
     margin: 0 auto;
     width: 100%;
     max-width: 400px;
-    height: 400px;
+    max-height: 400px;
     overflow: hidden;
 }
 
 #actions {
+    display: none;
     position: relative;
     width: 100%;
     max-width: 400px;
-    height: 90px;
-    line-height: 90px;
+    height: 65px;
+    line-height: 65px;
     margin: 0 auto;
     text-align: center;
     border-radius: 4px;
@@ -339,6 +340,7 @@ header {
 }
 
 #gif-actions a {
+    height: 40px;
     opacity: 0.75;
 }
 
@@ -353,7 +355,7 @@ header {
 #actions svg {
     display: none;
     position: absolute;
-    bottom: 0;
+    top: -25px;
     left: 0;
     margin: 0 20px;
     border-radius: 3px;
@@ -365,7 +367,7 @@ header {
 
 .action-left {
     position: absolute;
-    left: 10px;
+    left: 15px;
 }
 
 .action-right {

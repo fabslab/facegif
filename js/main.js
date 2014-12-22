@@ -25,6 +25,8 @@
 
   if (navigator.getMedia) {
     GumHelper.startVideoStreaming(startStream);
+  } else {
+    placeholder.text("Your browser does not support video capture.");
   }
 
   function startStream(err, stream, videoElement, videoWidth, videoHeight) {

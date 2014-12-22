@@ -318,6 +318,7 @@ header {
     max-width: 400px;
     max-height: 400px;
     overflow: hidden;
+    text-align: center;
 }
 
 #actions {

@@ -7,6 +7,7 @@
   var streamActions = $('#stream-actions');
   var gifActions = $('#gif-actions');
   var createAction = $('#action-create');
+  var loader = $('.loader');
   var createIcon = createAction.find('img');
   var actions = {
     create: createAction,
@@ -16,7 +17,7 @@
   };
 
   var progressColor = 'rgba(44,146,54,0.8)';
-  var progressBar = new ProgressBar.Line('#actions', {
+  var progressBar = new ProgressBar.Line('.progress-bar', {
     color: progressColor,
     strokeWidth: 3,
     duration: 1,
@@ -72,7 +73,7 @@
   }
 
   function displayStream() {
-    placeholder.empty();
+    placeholder.find('img').remove();
     placeholder.append(streamElement);
     streamElement.play();
 
@@ -100,7 +101,9 @@
   function displayProgress(progress) {
     if (progress === 1) {
       progressBar.path.setAttribute('stroke', 'rgba(44,146,54,0.2)');
+      streamElement.pause();
       createIcon.removeClass('rotating');
+      loader.fadeIn();
     }
     progressBar.set(progress);
   }
@@ -111,12 +114,13 @@
       return;
     }
 
+    loader.hide();
     $(progressBar.svg).hide();
 
     var image = obj.image;
     var animatedImage = document.createElement('img');
     animatedImage.src = image;
-    placeholder.empty();
+    placeholder.find('video').remove();
     placeholder.append(animatedImage);
 
     streamActions.hide();

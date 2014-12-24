@@ -334,24 +334,28 @@ header {
 }
 
 #actions a {
+    vertical-align: middle;
     display: inline-block;
-    height: 50px;
     opacity: 0.75;
     outline: none;
     transition: opacity .2s;
 }
 
 #gif-actions a {
-    height: 40px;
     opacity: 0.75;
+}
+
+#actions img {
+    vertical-align: inherit;
+    height: 50px;
+}
+
+#gif-actions img {
+    height: 40px;
 }
 
 #actions a:hover {
     opacity: 1;
-}
-
-#actions img {
-    height: 100%;
 }
 
 .progress-bar svg {

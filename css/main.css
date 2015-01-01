@@ -438,3 +438,18 @@ header {
 .loader svg path, .loader svg rect {
     fill: rgba(221,221,221,0.6);
 }
+
+.dialog-title {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-bottom: 5px;
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+}
+
+.share-items {
+    text-align: center;
+}
+
+.share-items a {
+    display: inline-block;
+}

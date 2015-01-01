@@ -1,5 +1,9 @@
 (function($) {
 
+  vex.defaultOptions.className = 'vex-theme-wireframe';
+
+  var imageData;
+
   var streamElement;
   var gifOptions;
 
@@ -27,12 +31,12 @@
   if (navigator.getMedia) {
     GumHelper.startVideoStreaming(startStream);
   } else {
-    placeholder.text("Your browser does not support video capture.");
+    placeholder.text('Your browser does not support video capture.');
   }
 
   function startStream(err, stream, videoElement, videoWidth, videoHeight) {
     if (err) {
-      console.log('Error creating video stream', err);
+      placeholder.text('There was an error starting video, please refresh and try again.');
       return;
     }
 
@@ -110,7 +114,7 @@
 
   function displayGIF(obj) {
     if (obj.error) {
-      console.log('Error creating GIF', obj.error);
+      placeholder.html('There was an error creating your GIF. Please refresh and try again.');
       return;
     }
 
@@ -123,6 +127,8 @@
     placeholder.find('video').remove();
     placeholder.append(animatedImage);
 
+    imageData = image;
+
     streamActions.hide();
     gifActions.fadeIn();
     actions.download.attr({
@@ -130,6 +136,56 @@
       download: 'facegif.gif'
     });
     actions.reset.one('click', displayStream);
+
+    actions.share.off();
+    actions.share.on('click', displayShareOptions);
+  }
+
+  function displayShareOptions() {
+    vex.open({
+      content: '<div class="dialog-title">Share</div>' +
+        '<div class="share-items">' +
+          '<a id="share-imgur" href="javascript:" title="Share on Imgur" style="overflow:hidden; width:100px; height:36px; background:url(img/imgur.png) top left no-repeat transparent;"></a>' +
+        '</div>'
+    });
+
+    $('#share-imgur').off().on('click', shareToImgur);
+  }
+
+  function shareToImgur() {
+    var image = imageData.replace(/^data:[^,]+,/, '');
+
+    loader.fadeIn();
+
+    $.ajax({
+      url: 'https://api.imgur.com/3/image',
+      method: 'POST',
+      headers: {
+        Authorization: 'Client-ID 1dd9c443be8f3fe',
+        Accept: 'application/json'
+      },
+      data: {
+        image: image,
+        type: 'base64'
+      }
+    }).done(function(response) {
+      var dialog = $('.share-items');
+
+      loader.hide();
+
+      if (!response.success) {
+        dialog.append('<span>Please try again.</span>');
+        return;
+      }
+
+      var imageUrl = 'https://imgur.com/gallery/' + response.data.id;
+      var link = document.createElement('a');
+      link.setAttribute('href', imageUrl);
+      link.setAttribute('title', 'Your faceGIF on Imgur');
+      link.innerHTML = imageUrl;
+
+      dialog.append(link);
+    });
   }
 
   function getCropDimensions(width, height, gifWidth, gifHeight) {

@@ -69,7 +69,10 @@
 
             onStreaming();
 
-            if(videoElement.mozSrcObject) {
+            if ('srcObject' in videoElement) {
+                videoElement.srcObject = stream;
+            }
+            else if('mozSrcObject' in videoElement) {
                 videoElement.mozSrcObject = stream;
             } else {
                 videoElement.src = window.URL.createObjectURL(stream);

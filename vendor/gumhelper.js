@@ -64,11 +64,17 @@
         videoElement.autoplay = true;
 
         videoElement.addEventListener('loadeddata', readyListener);
+        
+        var constraints = { video: true };
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia(constraints).then(onGetUserMedia).catch(errorCallback);
+        }
+        else {
+            navigator.getMedia(constraints, onGetUserMedia, errorCallback);
+        }
 
-        navigator.getMedia({ video: true }, function (stream) {
-
+        function onGetUserMedia(stream) {
             onStreaming();
-
             if ('srcObject' in videoElement) {
                 videoElement.srcObject = stream;
             }
@@ -77,12 +83,9 @@
             } else {
                 videoElement.src = window.URL.createObjectURL(stream);
             }
-
             cameraStream = stream;
             videoElement.play();
-
-        }, errorCallback);
-
+        }
     }
 
     /**
@@ -97,7 +100,7 @@
         var noGUMSupportTimeout;
         var timeoutLength = options.timeout !== undefined ? options.timeout : 0;
 
-        if(navigator.getMedia) {
+        if(navigator.mediaDevices.getUserMedia || navigator.getMedia) {
 
             // Some browsers apparently have support for video streaming because of the
             // presence of the getUserMedia function, but then do not answer our

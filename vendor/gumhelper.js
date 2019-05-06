@@ -1,17 +1,4 @@
-(function () { 
-    
-    // A couple of shims for having a common interface
-
-    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
-
-    navigator.getMedia = ( navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia ||
-        navigator.msGetUserMedia
-    );
-
-    //
-
+(function () {
     var video;
     var cameraStream;
 
@@ -70,7 +57,7 @@
             navigator.mediaDevices.getUserMedia(constraints).then(onGetUserMedia).catch(errorCallback);
         }
         else {
-            navigator.getMedia(constraints, onGetUserMedia, errorCallback);
+            gifshot.utils.getUserMedia(constraints, onGetUserMedia, errorCallback);
         }
 
         function onGetUserMedia(stream) {

@@ -28,11 +28,7 @@
     trailColor: 'rgba(221,221,221,0.6)'
   });
 
-  if (navigator.getMedia) {
-    GumHelper.startVideoStreaming(startStream);
-  } else {
-    placeholder.text('Your browser does not support video capture.');
-  }
+  GumHelper.startVideoStreaming(startStream);
 
   function startStream(err, stream, videoElement, videoWidth, videoHeight) {
     if (err) {
